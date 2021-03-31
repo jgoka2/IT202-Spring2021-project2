@@ -1,0 +1,14 @@
+{
+    "name": "IT-Project-2",
+    "short_name": "it",
+    "start_url": "index.html",
+    "display": "standalone",
+    "theme_color": "#808080",
+    "icons": [
+        {
+            "src": "./pic/icons/icon.jpeg",
+            "type": "image/jpeg", "sizes": "256x256"
+        }
+    ],
+    "offline_enabled": "true"
+}

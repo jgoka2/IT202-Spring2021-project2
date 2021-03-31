@@ -4,7 +4,8 @@
   <meta charset='utf-8'/>
   <link rel='stylesheet' href='custom.css'/>
   <!-- <script src="canvas.js"></script> -->
-
+<link rel="manifest" href="manifest.json" />
+ <link rel="icons" type="image/jpeg" sizes="144x144" href="/pic/icons/icon.jpeg">
   <style>
     canvas {
       height: 100vh;
@@ -229,6 +230,15 @@ let gameBegin = () => {
         }
 
       });
+    
+    if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker
+            .register("./serviceWorker.js")
+            .then(res => console.log("service worker registered"))
+            .catch(err => console.log("service worker not registered", err));
+    });
+}
 
 </script>
   </body>
