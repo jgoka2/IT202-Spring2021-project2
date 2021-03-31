@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='utf-8'/>
+  <title>HTML Canvas Demo</title>
+  <link rel='stylesheet' href='custom.css'/>
+  <!-- <script src="canvas.js"></script> -->
+
+  <style>
+    canvas {
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      background-color: "white";
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: "white";
+    }
+    </style>
+</head>
+<body>
+  <canvas id="html-canvas">
+
+<script>
+ 
+  const background = new Image();
+  background.src = 'pictures/background.png';
+  const playerImg = new Image();
+  playerImg.src = 'pictures/mario.jfif';
+  const harmImg = new Image();
+  harmImg.src = 'pictures/ant.jpg'
+  const benifitImg = new Image();
+  benifitImg.src = 'pictures/candy.png'
+  let canvas = document.querySelector("canvas");
+  let context = canvas.getContext("2d");
+   context.font = "15px ariel";
+context.fillStyle = "black";
+context.fillText("welcome to my game", canvas.width / 4, canvas.height / 4);
+context.fillText("press s to start", canvas.width / 4, canvas.height / 4 + 20);
+context.fillText("use up and down arrow keys", canvas.width / 4, canvas.height / 4 + 40);
+context.fillText("to control the player", canvas.width / 4, canvas.height / 4 + 60);
+  canvas.style.backgroundColor = "grey";
+  
+  
+  let radius = 8;
+  let temp = 1;
+  let temp2 = 1;
+  let requestAnimationFrame = window.requestAnimationFrame;
+  let playerItem={
+    score: 0,
+    x: 17,
+    y: 55,
+    lives: 3,
+    level: 1,
+    speed: 7,
+    radius: 8
+  };
+
+
+
+
+    let harm = [];
+    let benifit = [] ;
+
+
+  let playerDraw = () =>
+  {
+    
+    context.drawImage(playerImg, playerItem.x, playerItem.y, 60, 15);
+    context.beginPath();
+    context.arc(playerItem.x,playerItem.y, radius, 0,2*Math.PI);
+    context.fillStyle = "transperant";
+    context.closePath();
+  
+  }
+
+
+let context2 = canvas.getContext("2d");
+        let iter1 =0;
+        let iter2 = 0;
+         while( iter1<6) {
+        harm.push( {x: canvas.width/2, y: canvas.height/2, radius: 6, color: "red" } )
+        iter1++;
+      }
+
+        while ( iter2<3) {
+        benifit.push( {x: canvas.width/2, y: canvas.height/2, radius: 6, color: "red" } )
+        iter2++;
+      }
+
+
+
+ 
+
+
+
+
+let imageDraw = (item , img) => {
+    context2.drawImage(img, item.x, item.y, 25, 25);
+    context2.beginPath()
+    context2.arc(item.x, item.y, item.radius, 0, Math.PI*2);
+    context2.fillStyle = "transperant";
+    context2.closePath();
+}
+
+
+
+
+
+
+let gameBegin = () => {
+    let  draw = () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+     let context3 = canvas.getContext("2d");
+    playerDraw();
+//     drawHarm();
+//     drawBenifit();
+//     enemyCollison();
+//     benifitCollison();
+  
+  if (playerItem.lives >0) {
+      requestAnimationFrame(draw);
+  } else {
+     let context3 = canvas.getContext("2d");
+  context3.font = "20px Arial";
+  context3.fillStyle = "black";
+  context3.fillText("Game-Over", canvas.width/2, canvas.height/2);
+  }
+
+  }
+
+   draw();
+}
+
+
+// add an event listner for keydown of the up arrow key
+      document.addEventListener("keydown", (event) => {
+
+        switch(event.keyCode) {
+          // up arrow
+          case (38): {
+            playerItem.y -= playerItem.speed;
+            break;
+          }
+          // down arrow
+          case (40): {
+            playerItem.y += playerItem.speed;
+            break;
+          } 
+          case (83): {
+            console.log("s");
+            gameBegin();
+            break;
+          }
+          // default case - unwanted key is pressed
+          default: {
+            console.log("case fell through");
+          }
+        }
+
+      });
+
+</script>
+  </body>
+</html> 
