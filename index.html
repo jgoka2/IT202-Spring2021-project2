@@ -67,7 +67,7 @@ context.fillText("to control the player", canvas.width / 4, canvas.height / 4 + 
 
   let playerDraw = () =>
   {
-    
+    context.drawImage(background, 0, 0, canvas.width, canvas.height);
     context.drawImage(playerImg, playerItem.x, playerItem.y, 60, 15);
     context.beginPath();
     context.arc(playerItem.x,playerItem.y, radius, 0,2*Math.PI);
