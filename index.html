@@ -122,6 +122,23 @@ let imageDraw = (item , img) => {
         
       });
 }
+  
+    let drawBenifit = () => {
+   benifit.forEach( (item) => {
+     item.x -=temp2;
+      if (temp2 == 3) {
+       temp2 = 1;
+     }
+       if (item.x < -item.radius) {
+      item.x = canvas.width + item.radius;
+      item.y = item.radius + (Math.random() * (canvas.height - (2 * item.radius)))
+      }
+         imageDraw(item, benifitImg);
+        temp2+=1;
+      });
+
+
+}
 
 
 
@@ -133,6 +150,7 @@ let gameBegin = () => {
      let context3 = canvas.getContext("2d");
     playerDraw();
     drawHarm();
+        drawBenifit();
 
   
   if (playerItem.lives >0) {
