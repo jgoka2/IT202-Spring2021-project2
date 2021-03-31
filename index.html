@@ -106,6 +106,23 @@ let imageDraw = (item , img) => {
 }
 
 
+  let drawHarm = () => {
+   harm.forEach( (item) => {
+      item.x -=temp;
+      if (temp == 3) {
+       temp = 1;
+     }
+       if (item.x < -item.radius) {
+      item.x = canvas.width + item.radius;
+      item.y = item.radius + (Math.random() * (canvas.height - (2 * item.radius)))
+      }
+        imageDraw(item, harmImg);
+        temp = temp + 1;
+        
+        
+      });
+}
+
 
 
 
@@ -115,10 +132,8 @@ let gameBegin = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
      let context3 = canvas.getContext("2d");
     playerDraw();
-//     drawHarm();
-//     drawBenifit();
-//     enemyCollison();
-//     benifitCollison();
+    drawHarm();
+
   
   if (playerItem.lives >0) {
       requestAnimationFrame(draw);
