@@ -99,6 +99,19 @@ let context2 = canvas.getContext("2d");
         }
         return false;
      }
+    
+    
+let enemyCollison = () => {
+  harm.forEach( (item) => {
+       if (collisionCheck(item, playerItem)) {
+                playerItem.lives -= 1;
+                item.x = (canvas.width);
+                item.y = item.radius + (Math.random() * (canvas.height - (2 * item.radius)));
+                console.log(playerItem.lives);
+            }
+
+      });
+}
 
 
  
