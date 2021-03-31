@@ -90,7 +90,9 @@ let context2 = canvas.getContext("2d");
         iter2++;
       }
 
-    let collisionCheck = (object1, object2) => {
+
+
+     let collisionCheck = (object1, object2) => {
         let dx = object1.x - object2.x;
         let dy = object1.y - object2.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -99,8 +101,8 @@ let context2 = canvas.getContext("2d");
         }
         return false;
      }
-    
-    
+
+
 let enemyCollison = () => {
   harm.forEach( (item) => {
        if (collisionCheck(item, playerItem)) {
@@ -124,12 +126,6 @@ let benifitCollison = () => {
 
       });
 }
-
-
- 
-
-
-
 
 let imageDraw = (item , img) => {
     context2.drawImage(img, item.x, item.y, 25, 25);
@@ -156,8 +152,8 @@ let imageDraw = (item , img) => {
         
       });
 }
-  
-    let drawBenifit = () => {
+
+  let drawBenifit = () => {
    benifit.forEach( (item) => {
      item.x -=temp2;
       if (temp2 == 3) {
@@ -176,17 +172,23 @@ let imageDraw = (item , img) => {
 
 
 
-
-
 let gameBegin = () => {
     let  draw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
      let context3 = canvas.getContext("2d");
     playerDraw();
     drawHarm();
-        drawBenifit();
-
-  
+    drawBenifit();
+    enemyCollison();
+    benifitCollison();
+    context3.font = "10px Arial";
+  context3.fillStyle = "black";
+  let tempstr = "score: "+playerItem.score;
+  let tempstr1 = "lives:"+playerItem.lives;
+  let tempStr2 = "level:" + playerItem.level;
+     context.fillText(tempstr, 15, 20);
+       context.fillText(tempstr1, 55, 20);
+       context.fillText(tempStr2, 85, 20);
   if (playerItem.lives >0) {
       requestAnimationFrame(draw);
   } else {
